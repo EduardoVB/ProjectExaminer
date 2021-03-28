@@ -1,0 +1,16 @@
+2021-01-27 fixed bug in the font replacement utility
+2021-01-27 fixed bug that happened when compiled
+2021-01-27 added better support for running on project groups
+2021-01-26 bug fix at the 'Find controls' tab, now it allows to compare to empty strings ("")
+2021-01-19 added more options the the 'Find controls' tab
+2021-01-18 added some fixes for running at non-integer TwipsPerPixels DPI settings.
+2021-01-17 bug fix: in some situations VBComponent.Reload raised an error. 
+2020-10-04
+      The Copy to Clipboard feature now adds tab characters instead of spaces to facilitate pasting to Excel.
+      Some forms can be flagged unsaved (or changed) just opening them (without making any changes to them). It can be due to an UserControl or third party control. The Add-in opens all the forms, and in the previous version these forms were flagged as unsaved. Now that is fixed in this version, all forms remain in their original "saved/unsaved" state.
+      Designer windows remain in their original state (not closed if they were already open).
+2020-10-04
+      The compare criteria in the Find tab now ignored the "&" symbol (that can be common on Captions to set the accelerator key)
+      FontName properties not added to the String list anymore.
+      Out of memory bug fixed. The designer windows were opened -but not set visible- in the scan and not closed after that, causing an out of memory error on very large projects.
+2020-10-03: First version
