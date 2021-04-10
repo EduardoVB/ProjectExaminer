@@ -7,7 +7,7 @@ Begin {AC0714F6-3D04-11D1-AE7D-00A0C90F26F4} Connect
    _ExtentX        =   11621
    _ExtentY        =   17547
    _Version        =   393216
-   Description     =   "Se usa para cambiar un tipo de control por otro"
+   Description     =   "Examine the project to find what controls it uses, what controls have captions, to change fonts, etc."
    DisplayName     =   "Project Examiner"
    AppName         =   "Visual Basic"
    AppVer          =   "Visual Basic 98 (ver 6.0)"
