@@ -6,6 +6,15 @@ Begin VB.Form frmSelectItems
    ClientLeft      =   6264
    ClientTop       =   5076
    ClientWidth     =   3720
+   BeginProperty Font 
+      Name            =   "Segoe UI"
+      Size            =   9
+      Charset         =   0
+      Weight          =   400
+      Underline       =   0   'False
+      Italic          =   0   'False
+      Strikethrough   =   0   'False
+   EndProperty
    LinkTopic       =   "Form1"
    LockControls    =   -1  'True
    MaxButton       =   0   'False
@@ -49,7 +58,7 @@ Begin VB.Form frmSelectItems
       Width           =   1524
    End
    Begin VB.ListBox lstItems 
-      Height          =   3936
+      Height          =   3744
       Left            =   96
       Style           =   1  'Checkbox
       TabIndex        =   0

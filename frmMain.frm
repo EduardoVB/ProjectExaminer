@@ -157,7 +157,6 @@ Begin VB.Form frmMain
       _Version        =   393216
       Style           =   1
       Tabs            =   7
-      Tab             =   5
       TabsPerRow      =   7
       TabHeight       =   494
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -171,23 +170,23 @@ Begin VB.Form frmMain
       EndProperty
       TabCaption(0)   =   "Scan"
       TabPicture(0)   =   "frmMain.frx":0000
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "cmdNote"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "Label18"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "txtSummary"
+      Tab(0).Control(1)=   "Label17"
       Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "cmdScan"
       Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "Label17"
+      Tab(0).Control(3)=   "txtSummary"
       Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "Label18"
+      Tab(0).Control(4)=   "cmdNote"
       Tab(0).Control(4).Enabled=   0   'False
       Tab(0).ControlCount=   5
       TabCaption(1)   =   "Dependencies"
       TabPicture(1)   =   "frmMain.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "trvDepByDep"
-      Tab(1).Control(1)=   "trvDepByForm"
+      Tab(1).Control(0)=   "trvDepByForm"
+      Tab(1).Control(1)=   "trvDepByDep"
       Tab(1).ControlCount=   2
       TabCaption(2)   =   "Strings"
       TabPicture(2)   =   "frmMain.frx":0038
@@ -197,8 +196,8 @@ Begin VB.Form frmMain
       TabCaption(3)   =   "Fonts"
       TabPicture(3)   =   "frmMain.frx":0054
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "trvFontsByFont"
-      Tab(3).Control(1)=   "trvFontsByForm"
+      Tab(3).Control(0)=   "trvFontsByForm"
+      Tab(3).Control(1)=   "trvFontsByFont"
       Tab(3).ControlCount=   2
       TabCaption(4)   =   "Find controls"
       TabPicture(4)   =   "frmMain.frx":0070
@@ -207,49 +206,28 @@ Begin VB.Form frmMain
       Tab(4).ControlCount=   1
       TabCaption(5)   =   "Replace fonts"
       TabPicture(5)   =   "frmMain.frx":008C
-      Tab(5).ControlEnabled=   -1  'True
-      Tab(5).Control(0)=   "Label3"
-      Tab(5).Control(0).Enabled=   0   'False
-      Tab(5).Control(1)=   "Label4"
-      Tab(5).Control(1).Enabled=   0   'False
-      Tab(5).Control(2)=   "Label5"
-      Tab(5).Control(2).Enabled=   0   'False
-      Tab(5).Control(3)=   "Label6"
-      Tab(5).Control(3).Enabled=   0   'False
-      Tab(5).Control(4)=   "Label7"
-      Tab(5).Control(4).Enabled=   0   'False
-      Tab(5).Control(5)=   "Label8"
-      Tab(5).Control(5).Enabled=   0   'False
-      Tab(5).Control(6)=   "Label9"
-      Tab(5).Control(6).Enabled=   0   'False
-      Tab(5).Control(7)=   "Label10"
-      Tab(5).Control(7).Enabled=   0   'False
-      Tab(5).Control(8)=   "txtControlTypes"
-      Tab(5).Control(8).Enabled=   0   'False
-      Tab(5).Control(9)=   "cmsSelectControlTypes"
-      Tab(5).Control(9).Enabled=   0   'False
+      Tab(5).ControlEnabled=   0   'False
+      Tab(5).Control(0)=   "cmdReplaceFonts"
+      Tab(5).Control(1)=   "tmrRefrehcbo"
+      Tab(5).Control(2)=   "chkFontOfObject"
+      Tab(5).Control(3)=   "txtFontProperties"
+      Tab(5).Control(4)=   "cmdSelectFontProperties"
+      Tab(5).Control(5)=   "cboNewFontName"
+      Tab(5).Control(6)=   "cboNewFontSize"
+      Tab(5).Control(7)=   "cboOrigFontName"
+      Tab(5).Control(8)=   "cboOrigFontSize"
+      Tab(5).Control(9)=   "cmdSelectObjects"
       Tab(5).Control(10)=   "txtObjects"
-      Tab(5).Control(10).Enabled=   0   'False
-      Tab(5).Control(11)=   "cmdSelectObjects"
-      Tab(5).Control(11).Enabled=   0   'False
-      Tab(5).Control(12)=   "cboOrigFontSize"
-      Tab(5).Control(12).Enabled=   0   'False
-      Tab(5).Control(13)=   "cboOrigFontName"
-      Tab(5).Control(13).Enabled=   0   'False
-      Tab(5).Control(14)=   "cboNewFontSize"
-      Tab(5).Control(14).Enabled=   0   'False
-      Tab(5).Control(15)=   "cboNewFontName"
-      Tab(5).Control(15).Enabled=   0   'False
-      Tab(5).Control(16)=   "cmdSelectFontProperties"
-      Tab(5).Control(16).Enabled=   0   'False
-      Tab(5).Control(17)=   "txtFontProperties"
-      Tab(5).Control(17).Enabled=   0   'False
-      Tab(5).Control(18)=   "chkFontOfObject"
-      Tab(5).Control(18).Enabled=   0   'False
-      Tab(5).Control(19)=   "tmrRefrehcbo"
-      Tab(5).Control(19).Enabled=   0   'False
-      Tab(5).Control(20)=   "cmdReplaceFonts"
-      Tab(5).Control(20).Enabled=   0   'False
+      Tab(5).Control(11)=   "cmsSelectControlTypes"
+      Tab(5).Control(12)=   "txtControlTypes"
+      Tab(5).Control(13)=   "Label10"
+      Tab(5).Control(14)=   "Label9"
+      Tab(5).Control(15)=   "Label8"
+      Tab(5).Control(16)=   "Label7"
+      Tab(5).Control(17)=   "Label6"
+      Tab(5).Control(18)=   "Label5"
+      Tab(5).Control(19)=   "Label4"
+      Tab(5).Control(20)=   "Label3"
       Tab(5).ControlCount=   21
       TabCaption(6)   =   "Copy controls"
       TabPicture(6)   =   "frmMain.frx":00A8
@@ -259,7 +237,7 @@ Begin VB.Form frmMain
       Begin VB.CommandButton cmdNote 
          Caption         =   "?"
          Height          =   324
-         Left            =   -72568
+         Left            =   2432
          TabIndex        =   65
          Top             =   1440
          Width           =   564
@@ -509,20 +487,20 @@ Begin VB.Form frmMain
          Caption         =   "Replace fonts"
          Enabled         =   0   'False
          Height          =   348
-         Left            =   4500
+         Left            =   -70500
          TabIndex        =   22
          Top             =   3536
          Width           =   1524
       End
       Begin VB.Timer tmrRefrehcbo 
          Interval        =   1
-         Left            =   336
+         Left            =   -74664
          Top             =   3192
       End
       Begin VB.CheckBox chkFontOfObject 
          Caption         =   "Replace object Font too"
          Height          =   324
-         Left            =   4984
+         Left            =   -70016
          TabIndex        =   26
          ToolTipText     =   "Replaces the Font of the Form or UserControl itself"
          Top             =   1872
@@ -531,7 +509,7 @@ Begin VB.Form frmMain
       End
       Begin VB.TextBox txtFontProperties 
          Height          =   360
-         Left            =   1848
+         Left            =   -73152
          Locked          =   -1  'True
          TabIndex        =   24
          Text            =   "All"
@@ -541,14 +519,14 @@ Begin VB.Form frmMain
       Begin VB.CommandButton cmdSelectFontProperties 
          Caption         =   "Select"
          Height          =   348
-         Left            =   3576
+         Left            =   -71424
          TabIndex        =   23
          Top             =   1440
          Width           =   1140
       End
       Begin VB.ComboBox cboNewFontName 
          Height          =   336
-         Left            =   1848
+         Left            =   -73152
          Style           =   2  'Dropdown List
          TabIndex        =   19
          Top             =   2760
@@ -558,7 +536,7 @@ Begin VB.Form frmMain
          Enabled         =   0   'False
          Height          =   336
          ItemData        =   "frmMain.frx":019A
-         Left            =   4584
+         Left            =   -70416
          List            =   "frmMain.frx":019C
          TabIndex        =   18
          Top             =   2760
@@ -566,7 +544,7 @@ Begin VB.Form frmMain
       End
       Begin VB.ComboBox cboOrigFontName 
          Height          =   336
-         Left            =   1848
+         Left            =   -73152
          Style           =   2  'Dropdown List
          TabIndex        =   15
          Top             =   2304
@@ -575,7 +553,7 @@ Begin VB.Form frmMain
       Begin VB.ComboBox cboOrigFontSize 
          Height          =   336
          ItemData        =   "frmMain.frx":019E
-         Left            =   4584
+         Left            =   -70416
          List            =   "frmMain.frx":01A0
          TabIndex        =   14
          Top             =   2304
@@ -584,14 +562,14 @@ Begin VB.Form frmMain
       Begin VB.CommandButton cmdSelectObjects 
          Caption         =   "Select"
          Height          =   348
-         Left            =   3576
+         Left            =   -71424
          TabIndex        =   13
          Top             =   1848
          Width           =   1140
       End
       Begin VB.TextBox txtObjects 
          Height          =   360
-         Left            =   1848
+         Left            =   -73152
          Locked          =   -1  'True
          TabIndex        =   12
          Text            =   "All"
@@ -601,14 +579,14 @@ Begin VB.Form frmMain
       Begin VB.CommandButton cmsSelectControlTypes 
          Caption         =   "Select"
          Height          =   348
-         Left            =   3576
+         Left            =   -71424
          TabIndex        =   10
          Top             =   1032
          Width           =   1140
       End
       Begin VB.TextBox txtControlTypes 
          Height          =   360
-         Left            =   1848
+         Left            =   -73152
          Locked          =   -1  'True
          TabIndex        =   9
          Text            =   "All"
@@ -617,7 +595,7 @@ Begin VB.Form frmMain
       End
       Begin VB.TextBox txtSummary 
          Height          =   2412
-         Left            =   -74832
+         Left            =   168
          Locked          =   -1  'True
          MultiLine       =   -1  'True
          TabIndex        =   3
@@ -627,7 +605,7 @@ Begin VB.Form frmMain
       Begin VB.CommandButton cmdScan 
          Caption         =   "Scan project"
          Height          =   372
-         Left            =   -74808
+         Left            =   192
          TabIndex        =   1
          Top             =   520
          Width           =   1572
@@ -707,7 +685,7 @@ Begin VB.Form frmMain
             Strikethrough   =   0   'False
          EndProperty
          Height          =   240
-         Left            =   -74736
+         Left            =   264
          TabIndex        =   63
          Top             =   984
          Width           =   696
@@ -716,7 +694,7 @@ Begin VB.Form frmMain
          Alignment       =   1  'Right Justify
          Caption         =   "Properties:"
          Height          =   372
-         Left            =   576
+         Left            =   -74424
          TabIndex        =   25
          Top             =   1488
          Width           =   1140
@@ -725,7 +703,7 @@ Begin VB.Form frmMain
          Alignment       =   1  'Right Justify
          Caption         =   "New Font.Name:"
          Height          =   348
-         Left            =   24
+         Left            =   -74976
          TabIndex        =   21
          Top             =   2772
          Width           =   1716
@@ -734,7 +712,7 @@ Begin VB.Form frmMain
          Alignment       =   1  'Right Justify
          Caption         =   "Size:"
          Height          =   348
-         Left            =   4008
+         Left            =   -70992
          TabIndex        =   20
          Top             =   2784
          Width           =   468
@@ -743,7 +721,7 @@ Begin VB.Form frmMain
          Alignment       =   1  'Right Justify
          Caption         =   "Original Font.Name:"
          Height          =   348
-         Left            =   24
+         Left            =   -74976
          TabIndex        =   17
          Top             =   2316
          Width           =   1716
@@ -752,7 +730,7 @@ Begin VB.Form frmMain
          Alignment       =   1  'Right Justify
          Caption         =   "Size:"
          Height          =   348
-         Left            =   4008
+         Left            =   -70992
          TabIndex        =   16
          Top             =   2328
          Width           =   468
@@ -761,7 +739,7 @@ Begin VB.Form frmMain
          Alignment       =   1  'Right Justify
          Caption         =   "Objects (forms/usc):"
          Height          =   372
-         Left            =   48
+         Left            =   -74952
          TabIndex        =   11
          Top             =   1896
          Width           =   1668
@@ -770,7 +748,7 @@ Begin VB.Form frmMain
          Alignment       =   1  'Right Justify
          Caption         =   "Control type:"
          Height          =   372
-         Left            =   576
+         Left            =   -74424
          TabIndex        =   8
          Top             =   1080
          Width           =   1140
@@ -779,7 +757,7 @@ Begin VB.Form frmMain
          Caption         =   $"frmMain.frx":01A2
          ForeColor       =   &H000000C0&
          Height          =   708
-         Left            =   168
+         Left            =   -74832
          TabIndex        =   7
          Top             =   408
          Width           =   6950
@@ -788,7 +766,7 @@ Begin VB.Form frmMain
       Begin VB.Label Label18 
          Caption         =   $"frmMain.frx":0239
          Height          =   732
-         Left            =   -74712
+         Left            =   288
          TabIndex        =   64
          Top             =   984
          Width           =   6868
@@ -1267,7 +1245,13 @@ Private Sub cmdScan_Click()
         txtSummary.Refresh
         Me.Refresh
     Else
+        On Error Resume Next
         Set mProject = VBInstance.ActiveVBProject
+        If Err.Number Then
+            MsgBox "Error " & Err.Number & ": " & Err.Description, vbCritical
+            Exit Sub
+        End If
+        On Error GoTo 0
         If Not mLastProjectName = "" Then
             If mProject.Name <> mLastProjectName Then
                 Set mSelectedControlTypes = Nothing
@@ -1285,7 +1269,12 @@ Private Sub cmdScan_Click()
             Me.Caption = "Project: " & mProject.Name
             Scan
             Screen.MousePointer = vbDefault
+            On Error Resume Next
             mLastProjectName = mProject.Name
+            If Err.Number Then
+                mLastProjectName = ""
+            End If
+            On Error GoTo 0
             If Not mUnloading Then
                 If Not mCanceled Then
                     EnableOtherTabs True
@@ -1414,6 +1403,8 @@ Private Sub Scan()
                 'Debug.Print iCtl.ControlObject.Name
                 lblScanning2.Caption = "Control: " & iCtl.ControlObject.Name & " type: " & TypeName(iCtl.ControlObject)
                 lblScanning2.Refresh
+                lblScanning3.Caption = ""
+                lblScanning3.Refresh
                 If iCtl.ControlObject Is Nothing Then
                     mCanceled = True
                     mScanning = False
