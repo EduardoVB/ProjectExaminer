@@ -1531,7 +1531,7 @@ Private Sub Scan()
             
             Set iFont = New cPropFont
             Set iProp = Nothing
-            For p2 = 1 To iComp.Properties.Count ' Bug in the Add-In environment, For Each here crashes VB with UserControls when the Add-In is compiled
+            For p2 = 1 To iComp.Properties.Count
                 Set iProp = iComp.Properties(p2)
                 If iProp.Name = "Font" Then
                     Set iObj = Nothing
@@ -2691,7 +2691,7 @@ Private Sub DoReplaceFonts()
                 
                 If chkFontOfObject.Value Then
                     Set iProp = Nothing
-                    For p2 = 1 To iComp.Properties.Count ' Bug in the Add-In environment, For Each here crashes VB with UserControls when the Add-In is compiled
+                    For p2 = 1 To iComp.Properties.Count
                         Set iProp = iComp.Properties(p2)
                         If iProp.Name = "Font" Then
                             Set iObj = Nothing
