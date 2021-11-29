@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "tabctl32.ocx"
+Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Object = "{6B7E6392-850A-101B-AFC0-4210102A8DA7}#1.3#0"; "COMCTL32.OCX"
 Begin VB.Form frmMain 
    BorderStyle     =   3  'Fixed Dialog
@@ -825,6 +825,7 @@ Private mDesignerWindowsZOrder As Collection
 
 Private WithEvents mProjects As VBIDE.VBProjectsEvents
 Attribute mProjects.VB_VarHelpID = -1
+Private mInIDE As Boolean
 
 Private Sub cboControlType_Click()
     Dim iCol As Collection
@@ -1384,6 +1385,7 @@ Private Sub Scan()
             'Debug.Print vbTab & "Scanning: " & iComp.Name & "..."
             lblScanning.Caption = "Scanning: " & iComp.Name & "..."
             lblScanning.Refresh
+            If mInIDE Then Debug.Print lblScanning.Caption
             DoEvents
             If mCanceled Then
                 mScanning = False
@@ -1403,6 +1405,7 @@ Private Sub Scan()
                 'Debug.Print iCtl.ControlObject.Name
                 lblScanning2.Caption = "Control: " & iCtl.ControlObject.Name & " type: " & TypeName(iCtl.ControlObject)
                 lblScanning2.Refresh
+                If mInIDE Then Debug.Print vbTab & lblScanning2.Caption
                 lblScanning3.Caption = ""
                 lblScanning3.Refresh
                 If iCtl.ControlObject Is Nothing Then
@@ -1422,7 +1425,10 @@ Private Sub Scan()
                     AddControlTypeGlobal iCtl
                 End If
                 For Each iProp In iCtl.Properties
+'                    Debug.Print iProp.Name
+ '                   Stop
                     lblScanning3.Caption = "Property: " & iProp.Name
+                    If mInIDE Then Debug.Print vbTab & vbTab & lblScanning3.Caption
                     lblScanning3.Refresh
                     'Debug.Print vbTab & iProp.Name
                     pr = pr + 1
@@ -1630,6 +1636,7 @@ Private Sub AddControlTypeGlobal(nCtl As VBControl)
     
     Set iCol = New Collection
     For Each iProp In nCtl.Properties
+        If mInIDE Then Debug.Print vbTab & vbTab & "Property: " & iProp.Name
         iVar = Empty
         On Error Resume Next
         iVar = iProp
@@ -1953,6 +1960,7 @@ Private Sub Form_Load()
     Dim c As Long
     
     mUnloading = False
+    mInIDE = InIDE
     Set mProjects = Nothing
     Set mProjects = VBInstance.Events.VBProjectsEvents
     Me.Caption = App.Title
@@ -3176,5 +3184,14 @@ Private Function GetTrueTwipsPerPixelX() As Single
     Else
         GetTrueTwipsPerPixelX = Screen.TwipsPerPixelX
     End If
+End Function
+
+Private Property Get InIDE() As Boolean
+    Debug.Assert MakeTrue(InIDE)
+End Property
+ 
+Private Function MakeTrue(bValue As Boolean) As Boolean
+    bValue = True
+    MakeTrue = True
 End Function
 
