@@ -23,6 +23,15 @@ Begin VB.Form frmMain
    ScaleHeight     =   4596
    ScaleWidth      =   7440
    ShowInTaskbar   =   0   'False
+   Begin VB.ListBox lstAux 
+      Height          =   528
+      Left            =   396
+      Sorted          =   -1  'True
+      TabIndex        =   69
+      Top             =   5976
+      Visible         =   0   'False
+      Width           =   1488
+   End
    Begin VB.PictureBox picOptDep 
       BorderStyle     =   0  'None
       Height          =   444
@@ -203,36 +212,59 @@ Begin VB.Form frmMain
       TabPicture(4)   =   "frmMain.frx":0070
       Tab(4).ControlEnabled=   0   'False
       Tab(4).Control(0)=   "picTabContainer(4)"
+      Tab(4).Control(0).Enabled=   0   'False
       Tab(4).ControlCount=   1
       TabCaption(5)   =   "Replace fonts"
       TabPicture(5)   =   "frmMain.frx":008C
       Tab(5).ControlEnabled=   0   'False
-      Tab(5).Control(0)=   "cmdReplaceFonts"
-      Tab(5).Control(1)=   "tmrRefrehcbo"
-      Tab(5).Control(2)=   "chkFontOfObject"
-      Tab(5).Control(3)=   "txtFontProperties"
-      Tab(5).Control(4)=   "cmdSelectFontProperties"
-      Tab(5).Control(5)=   "cboNewFontName"
-      Tab(5).Control(6)=   "cboNewFontSize"
-      Tab(5).Control(7)=   "cboOrigFontName"
-      Tab(5).Control(8)=   "cboOrigFontSize"
-      Tab(5).Control(9)=   "cmdSelectObjects"
+      Tab(5).Control(0)=   "Label3"
+      Tab(5).Control(0).Enabled=   0   'False
+      Tab(5).Control(1)=   "Label4"
+      Tab(5).Control(1).Enabled=   0   'False
+      Tab(5).Control(2)=   "Label5"
+      Tab(5).Control(2).Enabled=   0   'False
+      Tab(5).Control(3)=   "Label6"
+      Tab(5).Control(3).Enabled=   0   'False
+      Tab(5).Control(4)=   "Label7"
+      Tab(5).Control(4).Enabled=   0   'False
+      Tab(5).Control(5)=   "Label8"
+      Tab(5).Control(5).Enabled=   0   'False
+      Tab(5).Control(6)=   "Label9"
+      Tab(5).Control(6).Enabled=   0   'False
+      Tab(5).Control(7)=   "Label10"
+      Tab(5).Control(7).Enabled=   0   'False
+      Tab(5).Control(8)=   "txtControlTypes"
+      Tab(5).Control(8).Enabled=   0   'False
+      Tab(5).Control(9)=   "cmsSelectControlTypes"
+      Tab(5).Control(9).Enabled=   0   'False
       Tab(5).Control(10)=   "txtObjects"
-      Tab(5).Control(11)=   "cmsSelectControlTypes"
-      Tab(5).Control(12)=   "txtControlTypes"
-      Tab(5).Control(13)=   "Label10"
-      Tab(5).Control(14)=   "Label9"
-      Tab(5).Control(15)=   "Label8"
-      Tab(5).Control(16)=   "Label7"
-      Tab(5).Control(17)=   "Label6"
-      Tab(5).Control(18)=   "Label5"
-      Tab(5).Control(19)=   "Label4"
-      Tab(5).Control(20)=   "Label3"
+      Tab(5).Control(10).Enabled=   0   'False
+      Tab(5).Control(11)=   "cmdSelectObjects"
+      Tab(5).Control(11).Enabled=   0   'False
+      Tab(5).Control(12)=   "cboOrigFontSize"
+      Tab(5).Control(12).Enabled=   0   'False
+      Tab(5).Control(13)=   "cboOrigFontName"
+      Tab(5).Control(13).Enabled=   0   'False
+      Tab(5).Control(14)=   "cboNewFontSize"
+      Tab(5).Control(14).Enabled=   0   'False
+      Tab(5).Control(15)=   "cboNewFontName"
+      Tab(5).Control(15).Enabled=   0   'False
+      Tab(5).Control(16)=   "cmdSelectFontProperties"
+      Tab(5).Control(16).Enabled=   0   'False
+      Tab(5).Control(17)=   "txtFontProperties"
+      Tab(5).Control(17).Enabled=   0   'False
+      Tab(5).Control(18)=   "chkFontOfObject"
+      Tab(5).Control(18).Enabled=   0   'False
+      Tab(5).Control(19)=   "tmrRefrehcbo"
+      Tab(5).Control(19).Enabled=   0   'False
+      Tab(5).Control(20)=   "cmdReplaceFonts"
+      Tab(5).Control(20).Enabled=   0   'False
       Tab(5).ControlCount=   21
       TabCaption(6)   =   "Copy controls"
       TabPicture(6)   =   "frmMain.frx":00A8
       Tab(6).ControlEnabled=   0   'False
       Tab(6).Control(0)=   "picTabContainer(6)"
+      Tab(6).Control(0).Enabled=   0   'False
       Tab(6).ControlCount=   1
       Begin VB.CommandButton cmdNote 
          Caption         =   "?"
@@ -441,6 +473,7 @@ Begin VB.Form frmMain
          Begin VB.ComboBox cboControlType 
             Height          =   336
             Left            =   1980
+            Sorted          =   -1  'True
             Style           =   2  'Dropdown List
             TabIndex        =   41
             Top             =   96
@@ -936,7 +969,7 @@ Private Sub cboOrigObject_Click()
                         iDesignerWindowVisible = iComp.DesignerWindow.Visible
                         Set iDes = iComp.Designer
                         For Each iCtl In iDes.VBControls
-                            cboOrigControl.AddItem iCtl.ControlObject.Name & " (" & iCtl.ProgId & ")"
+                            cboOrigControl.AddItem GetControlName(iCtl.ControlObject) & " (" & iCtl.ProgId & ")"
                         Next
                         Set iCtl = Nothing
                         If iComp.IsDirty And (Not iIsDirty) Then
@@ -1407,8 +1440,8 @@ Private Sub Scan()
             Set iAuxControlPropertiesString = New Collection
             
             For Each iCtl In iDes.VBControls
-                'Debug.Print iCtl.ControlObject.Name
-                lblScanning2.Caption = "Control: " & iCtl.ControlObject.Name & " type: " & TypeName(iCtl.ControlObject)
+                'Debug.Print GetControlName(iCtl.ControlObject)
+                lblScanning2.Caption = "Control: " & GetControlName(iCtl.ControlObject) & " type: " & TypeName(iCtl.ControlObject)
                 lblScanning2.Refresh
                 If mInIDE Then Debug.Print vbTab & lblScanning2.Caption
                 lblScanning3.Caption = ""
@@ -2009,6 +2042,7 @@ Private Sub ShowResults()
     Dim iFKey As String
     Dim iAuxCol As Collection
     Dim iVar As Variant
+    Dim c As Long
     
     ' Dependencies By Form
     trvDepByForm.Nodes.Clear
@@ -2035,11 +2069,15 @@ Private Sub ShowResults()
             If iFound Then
                 iTKey = SimpleHash("t_" & mObjects_Name(o) & "_" & iType)
                 trvDepByForm.Nodes.Add iOKey, tvwChild, iTKey, iType
+                lstAux.Clear
                 For i = 1 To iControlTypes.Count
                     iCtlType = iControlTypes(i)
                     If iCtlType = iType Then
-                        trvDepByForm.Nodes.Add iTKey, tvwChild, , iControlNames(i)
+                        lstAux.AddItem iControlNames(i)
                     End If
+                Next
+                For c = 0 To lstAux.ListCount - 1
+                    trvDepByForm.Nodes.Add iTKey, tvwChild, , lstAux.List(c)
                 Next
             End If
         Next
@@ -2090,11 +2128,15 @@ Private Sub ShowResults()
                         If iFound Then
                             iTKey = SimpleHash("t_" & iDep & "_" & mObjects_Name(o) & "_" & iType)
                             trvDepByDep.Nodes.Add iOKey, tvwChild, iTKey, iType
+                            lstAux.Clear
                             For i = 1 To iControlTypes.Count
                                 iCtlType = iControlTypes(i)
                                 If iCtlType = iType Then
-                                    trvDepByDep.Nodes.Add iTKey, tvwChild, , iControlNames(i)
+                                    lstAux.AddItem iControlNames(i)
                                 End If
+                            Next
+                            For c = 0 To lstAux.ListCount - 1
+                                trvDepByDep.Nodes.Add iTKey, tvwChild, , lstAux.List(c)
                             Next
                         End If
                     End If
@@ -2156,8 +2198,12 @@ Private Sub ShowResults()
                                 Set iAuxPropsString = iAuxControlPropertiesString(i)
                                 If iAuxPropsString.Count > 0 Then
                                     trvStrings.Nodes.Add iTKey, tvwChild, iCKey, iControlNames(i)
+                                    lstAux.Clear
                                     For Each iString In iAuxPropsString
-                                        trvStrings.Nodes.Add iCKey, tvwChild, , iString.PropertyName & " Property" & ": """ & iString.StringValue & """"
+                                        lstAux.AddItem iString.PropertyName & " Property" & ": """ & iString.StringValue & """"
+                                    Next
+                                    For c = 0 To lstAux.ListCount - 1
+                                        trvStrings.Nodes.Add iCKey, tvwChild, , lstAux.List(c)
                                     Next
                                 End If
                             End If
@@ -2220,8 +2266,12 @@ Private Sub ShowResults()
                             If iAuxPropsFont.Count > 0 Then
                                 iCKey = "c_" & mObjects_Name(o) & "_" & iType & "_" & iControlNames(i)
                                 trvFontsByForm.Nodes.Add iTKey, tvwChild, iCKey, iControlNames(i)
+                                lstAux.Clear
                                 For Each iFont In iAuxPropsFont
-                                    trvFontsByForm.Nodes.Add iCKey, tvwChild, , iFont.PropertyName & " Property" & ": " & iFont.FontName & "  " & iFont.FontSize & " pt"
+                                    lstAux.AddItem iFont.PropertyName & " Property" & ": " & iFont.FontName & "  " & iFont.FontSize & " pt"
+                                Next
+                                For c = 0 To lstAux.ListCount - 1
+                                    trvFontsByForm.Nodes.Add iCKey, tvwChild, , lstAux.List(c)
                                 Next
                             End If
                         End If
@@ -2317,10 +2367,10 @@ Private Sub ShowResults()
     If trvFontsByFont.Nodes.Count > 0 Then trvFontsByFont.Nodes(1).EnsureVisible
     
     cboControlType.Clear
-    cboControlType.AddItem "[Please select]"
     For i = 1 To mControlTypesGlobal.Count
         cboControlType.AddItem mControlTypesGlobal(i)
     Next
+    cboControlType.AddItem "[Please select]", 0
     cboControlType.ListIndex = 0
 End Sub
 
@@ -2639,7 +2689,7 @@ Private Sub DoReplaceFonts()
                 Set iDes = iComp.Designer
                 For Each iCtl In iDes.VBControls
                     If ControlTypeSelected(CVar(iCtl.ProgId)) Then
-                        lblScanning2.Caption = "Control: " & iCtl.ControlObject.Name & " type: " & TypeName(iCtl.ControlObject)
+                        lblScanning2.Caption = "Control: " & GetControlName(iCtl.ControlObject) & " type: " & TypeName(iCtl.ControlObject)
                         lblScanning2.Refresh
                         If iCtl.ControlObject Is Nothing Then
                             mCanceled = True
@@ -2788,6 +2838,7 @@ Private Sub FindControls()
     Dim iDesignerWindowVisible As Boolean
     Dim iIsDirty As Boolean
     Dim iCriteria As Long
+    Dim c As Long
     
     iCriteria = cboCriteria.ListIndex
     If iCriteria = 0 Then ' list all
@@ -2849,16 +2900,17 @@ Private Sub FindControls()
             iIsDirty = iComp.IsDirty
             iDesignerWindowVisible = iComp.DesignerWindow.Visible
             Set iDes = iComp.Designer
+            lstAux.Clear
             For Each iCtl In iDes.VBControls
                 If iCtl.ProgId = iControlType Then
-                    lblScanning2.Caption = "Control: " & iCtl.ControlObject.Name ' & " type: " & TypeName(iCtl.ControlObject)
+                    lblScanning2.Caption = "Control: " & GetControlName(iCtl.ControlObject) ' & " type: " & TypeName(iCtl.ControlObject)
                     lblScanning2.Refresh
                     If iCriteria = 0 Then ' list all
                         If iOKey = "" Then
                             iOKey = SimpleHash("o_" & iComp.Name)
                             trvFind.Nodes.Add , , iOKey, iComp.Name
                         End If
-                        trvFind.Nodes.Add iOKey, tvwChild, , iCtl.ControlObject.Name
+                        lstAux.AddItem iOKey & "|" & GetControlName(iCtl.ControlObject)
                         cc = cc + 1
                     Else
                         If iCriteria = 2 Then ' compare to other property
@@ -2922,15 +2974,15 @@ Private Sub FindControls()
                                     End If
                                     If iCriteria = 1 Then
                                         If iVarType = vbString Then
-                                            trvFind.Nodes.Add iOKey, tvwChild, , iCtl.ControlObject.Name & "." & iProp.Name & " = """ & iProp.Value & """"
+                                            lstAux.AddItem iOKey & "|" & GetControlName(iCtl.ControlObject) & "." & iProp.Name & " = """ & iProp.Value & """"
                                         Else
-                                            trvFind.Nodes.Add iOKey, tvwChild, , iCtl.ControlObject.Name & "." & iProp.Name & " = " & iProp.Value
+                                            lstAux.AddItem iOKey & "|" & GetControlName(iCtl.ControlObject) & "." & iProp.Name & " = " & iProp.Value
                                         End If
                                     ElseIf iCriteria = 2 Then
                                         If iVarType = vbString Then
-                                            trvFind.Nodes.Add iOKey, tvwChild, , iCtl.ControlObject.Name & "." & iProp.Name & " = """ & iProp.Value & """, " & cboPropertyToCompare2.Text & " = """ & iCompareToString & """"
+                                            lstAux.AddItem iOKey & "|" & GetControlName(iCtl.ControlObject) & "." & iProp.Name & " = """ & iProp.Value & """, " & cboPropertyToCompare2.Text & " = """ & iCompareToString & """"
                                         Else
-                                            trvFind.Nodes.Add iOKey, tvwChild, , iCtl.ControlObject.Name & "." & iProp.Name & " = " & iProp.Value & ", " & cboPropertyToCompare2.Text & " = " & iCompareToNumber
+                                            lstAux.AddItem iOKey & "|" & GetControlName(iCtl.ControlObject) & "." & iProp.Name & " = " & iProp.Value & ", " & cboPropertyToCompare2.Text & " = " & iCompareToNumber
                                         End If
                                     End If
                                     cc = cc + 1
@@ -2949,6 +3001,9 @@ Private Sub FindControls()
                 iComp.Reload
                 On Error GoTo ErrorExit
             End If
+            For c = 0 To lstAux.ListCount - 1
+                trvFind.Nodes.Add Split(lstAux.List(c), "|")(0), tvwChild, , Split(lstAux.List(c), "|")(1)
+            Next
             If Not iDesignerWindowVisible Then iComp.DesignerWindow.Close
             Set iDes = Nothing
         End If
@@ -3025,7 +3080,7 @@ Private Sub DoAddControls()
                 iDesignerWindowVisible = iComp.DesignerWindow.Visible
                 Set iForm = iComp.Designer
                 For Each iCtl In iForm.VBControls
-                    If iCtl.ControlObject.Name = Left$(cboOrigControl.Text, InStr(cboOrigControl.Text, " ") - 1) Then
+                    If GetControlName(iCtl.ControlObject) = Left$(cboOrigControl.Text, InStr(cboOrigControl.Text, " ") - 1) Then
                         Set iControlToCopy = iCtl
                     End If
                 Next
@@ -3155,7 +3210,7 @@ Private Function ControlNameExistsInForm(nForm As VBForm, ByVal nName As String)
     
     nName = LCase$(nName)
     For Each iCtl In nForm.VBControls
-        If LCase$(iCtl.ControlObject.Name) = nName Then
+        If LCase$(GetControlName(iCtl.ControlObject)) = nName Then
             ControlNameExistsInForm = True
             Exit For
         End If
