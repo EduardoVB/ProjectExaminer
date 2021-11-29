@@ -1394,7 +1394,12 @@ Private Sub Scan()
             End If
             pr = 0
             iIsDirty = iComp.IsDirty
+            On Error Resume Next
             iDesignerWindowVisible = iComp.DesignerWindow.Visible
+            If Err.Number Then
+                MsgBox "Error opening " & iComp.Name & ". Canceling...", vbExclamation
+            End If
+            On Error GoTo ErrorExit
             Set iDes = iComp.Designer
             Set iControlNames = New Collection
             Set iControlTypes = New Collection
