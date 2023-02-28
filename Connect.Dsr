@@ -58,7 +58,7 @@ Sub ShowfrmMain()
 End Sub
 
 '------------------------------------------------------
-'este método agrega el complemento a VB
+'este mÃ©todo agrega el complemento a VB
 '------------------------------------------------------
 Private Sub AddinInstance_OnConnection(ByVal Application As Object, ByVal ConnectMode As AddInDesignerObjects.ext_ConnectMode, ByVal AddInInst As Object, custom() As Variant)
     On Error GoTo error_handler
@@ -66,8 +66,8 @@ Private Sub AddinInstance_OnConnection(ByVal Application As Object, ByVal Connec
     'guardar la instanacia de vb
     Set VBInstance = Application
     
-    'éste es un buen lugar para establecer un punto de interrupción y
-    'y probar varios objetos, propiedades y métodos de complemento
+    'Ã©ste es un buen lugar para establecer un punto de interrupciÃ³n y
+    'y probar varios objetos, propiedades y mÃ©todos de complemento
     'Debug.Print VBInstance.FullName
 
     If ConnectMode = ext_cm_External Then
@@ -95,7 +95,7 @@ error_handler:
 End Sub
 
 '------------------------------------------------------
-'este método quita el complemento de VB
+'este mÃ©todo quita el complemento de VB
 '------------------------------------------------------
 Private Sub AddinInstance_OnDisconnection(ByVal RemoveMode As AddInDesignerObjects.ext_DisconnectMode, custom() As Variant)
     On Error Resume Next
@@ -123,7 +123,7 @@ Private Sub IDTExtensibility_OnStartupComplete(custom() As Variant)
     End If
 End Sub
 
-'este evento se desencadena cuando se hace clic en el menú desde el IDE
+'este evento se desencadena cuando se hace clic en el menÃº desde el IDE
 Private Sub MenuHandler_Click(ByVal CommandBarControl As Object, handled As Boolean, CancelDefault As Boolean)
     ShowfrmMain
 End Sub
@@ -134,7 +134,7 @@ Function AddToAddInCommandBar(sCaption As String) As Office.CommandBarControl
   
     On Error GoTo AddToAddInCommandBarErr
     
-    'ver si podemos encontrar el menú Complementos
+    'ver si podemos encontrar el menÃº Complementos
     Set cbMenu = VBInstance.CommandBars("Add-Ins")
     If cbMenu Is Nothing Then
         'no disponible; error
@@ -143,7 +143,7 @@ Function AddToAddInCommandBar(sCaption As String) As Office.CommandBarControl
     
     'agregarlo a la barra de comandos
     Set cbMenuCommandBar = cbMenu.Controls.Add(1)
-    'establecer el título
+    'establecer el tÃ­tulo
     cbMenuCommandBar.Caption = sCaption
     
     Set AddToAddInCommandBar = cbMenuCommandBar
